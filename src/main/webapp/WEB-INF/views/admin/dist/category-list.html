@@ -1,0 +1,9 @@
+<h2>Categories</h2>
+<form action="/healthhubutm/admin/category/add" method="post">
+  <input name="name" placeholder="Category name">
+  <button>Add</button>
+</form>
+
+<ul>
+  <li th:each="c : ${categories}" th:text="${c.name}"></li>
+</ul>

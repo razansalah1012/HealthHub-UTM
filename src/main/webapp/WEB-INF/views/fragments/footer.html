@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="siteFooter">
+  <footer class="footer">
+    <div class="container">
+      © <span th:text="${T(java.time.Year).now()}"></span> HealthHub@UTM — All rights reserved.
+    </div>
+  </footer>
+</div>
+</body>
+</html>

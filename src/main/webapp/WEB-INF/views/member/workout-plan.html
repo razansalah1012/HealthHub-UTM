@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>My Workout Plan</title>
+
+  <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+  <div class="card">
+    <h2>My Workout Plan</h2>
+
+    <p>
+      This workout plan is assigned by your trainer to guide your fitness routine.
+    </p>
+
+    <div th:if="${plan == null}">
+      <p><b>No workout plan assigned yet.</b></p>
+    </div>
+
+    <div th:if="${plan != null}">
+      <p><b>Plan Title:</b> <span th:text="${plan.title}"></span></p>
+      <p><b>Description:</b> <span th:text="${plan.description}"></span></p>
+      <p><b>Duration:</b> <span th:text="${plan.durationWeeks}"></span> weeks</p>
+    </div>
+
+    <div style="margin-top:20px;">
+      <a th:href="@{/member/dashboard}"
+         style="color:#48182F;font-weight:600;text-decoration:none;">
+        ⬅ Back to Dashboard
+      </a>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

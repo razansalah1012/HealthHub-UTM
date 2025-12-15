@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Programs</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; }
+    th { background: #f5f5f5; }
+    a, button { margin-right: 6px; }
+  </style>
+</head>
+<body>
+
+<h1>Program List</h1>
+
+<p>
+  <a th:href="@{/program/add}">+ Add New Program</a>
+</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Duration (weeks)</th>
+    <th>Monthly Fee (RM)</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr th:if="${#lists.isEmpty(programs)}">
+    <td colspan="6">No programs found.</td>
+  </tr>
+
+  <tr th:each="p : ${programs}">
+    <td th:text="${p.id}"></td>
+    <td th:text="${p.name}"></td>
+    <td th:text="${p.description}"></td>
+    <td th:text="${p.durationWeeks}"></td>
+    <td th:text="${p.monthlyFee}"></td>
+    <td>
+      <a th:href="@{/program/view/{id}(id=${p.id})}">View</a>
+      <a th:href="@{/program/edit/{id}(id=${p.id})}">Edit</a>
+      <a th:href="@{/program/delete/{id}(id=${p.id})}"
+         onclick="return confirm('Delete this program?');">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

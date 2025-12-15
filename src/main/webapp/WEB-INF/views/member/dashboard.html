@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Member Dashboard</title>
+  <link rel="stylesheet" th:href="@{/resources/css/app.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: siteHeader"></div>
+
+<div class="container">
+  <div class="card">
+    <h1 class="h1">Hello, <span th:text="${name != null ? name : 'Member'}">Member</span> </h1>
+    <p class="p" th:text="${desc}">...</p>
+
+    <div class="grid">
+      <a class="nav-card" th:href="@{/member/bmi/form}">
+        <div class="t">Enter BMI</div>
+        <div class="d">Calculate BMI and save your record.</div>
+      </a>
+
+      <a class="nav-card" th:href="@{/member/bmi/history}">
+        <div class="t">BMI History</div>
+        <div class="d">View your BMI records over time.</div>
+      </a>
+
+      <a class="nav-card" th:href="@{/member/programs}">
+        <div class="t">Browse Programs</div>
+        <div class="d">Explore available fitness programs.</div>
+      </a>
+
+      <a class="nav-card" th:href="@{/member/enrollments}">
+        <div class="t">My Enrollments</div>
+        <div class="d">Check program name + payment status.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: siteFooter"></div>
+</body>
+</html>
+

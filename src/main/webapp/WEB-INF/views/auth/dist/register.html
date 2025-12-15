@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>HealthHub@UTM | Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blackberry:#48182F;
+  --moonstone:#D4CBC4;
+  --soft-white:#F7F5F2;
+  --accent:#8B3A62;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--blackberry), #2b0f1c);
+  height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.card {
+  background: var(--soft-white);
+  width: 380px;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+h1 {
+  color: var(--blackberry);
+  text-align:center;
+}
+
+p {
+  text-align:center;
+  color:#555;
+}
+
+label {
+  font-weight:500;
+}
+
+input {
+  width:100%;
+  padding:10px;
+  margin:6px 0 14px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button {
+  width:100%;
+  background: var(--blackberry);
+  color:white;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+button:hover {
+  background: var(--accent);
+}
+
+.link {
+  text-align:center;
+  margin-top:14px;
+}
+
+.error { color:red; text-align:center; }
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1>HealthHub@UTM</h1>
+  <p>Welcome to our website.</p>
+
+  <p class="error" th:if="${error}" th:text="${error}"></p>
+
+    <form th:action="@{/auth/register}" method="post">
+    <label>Email</label>
+    <input name="email" required>
+
+    <label>Name</label>
+    <input name="name" required>
+
+        <label>Role</label>
+    <select name="role" required>
+    <option value="member">Member</option>
+    <option value="trainer">Trainer</option>
+    </select>
+
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <button>Register</button>
+    </form>
+    <div class="link">
+      <p>Already have an account? <a th:href="@{/auth/login}">Login here</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<form th:action="@{/admin/program/save}" th:object="${program}" method="post">
+  <input type="hidden" th:field="*{id}">
+  Name: <input th:field="*{name}"><br>
+  Description: <input th:field="*{description}"><br>
+  Duration Weeks: <input th:field="*{durationWeeks}"><br>
+  Monthly Fee: <input th:field="*{monthlyFee}"><br>
+  <button>Save</button>
+</form>

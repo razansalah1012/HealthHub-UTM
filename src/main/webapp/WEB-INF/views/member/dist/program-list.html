@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Browse Programs | HealthHub@UTM</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" th:href="@{/resources/css/program-list.css}">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="container bar">
+        <div class="brand">
+            <div class="title">HealthHub@UTM</div>
+            <div class="subtitle">Fitness & Wellness Platform</div>
+        </div>
+
+        <nav>
+            <a th:href="@{/member/dashboard}" class="btn btn-outline">Dashboard</a>
+            <a th:href="@{/auth/logout}" class="btn btn-light">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ================= CONTENT ================= -->
+<main class="container">
+    <h1 class="page-title">Available Fitness Programs</h1>
+    <p class="page-desc">
+        Choose a program that fits your fitness goals and start your journey today.
+    </p>
+
+    <!-- Programs Grid -->
+    <div class="program-grid">
+
+        <div class="program-card"
+             th:each="p : ${programs}">
+
+            <h3 th:text="${p.name}">Program Name</h3>
+
+            <p class="desc"
+               th:text="${p.description}">
+                Program description
+            </p>
+
+            <div class="meta">
+                <span>
+                    ⏱ <b th:text="${p.durationWeeks}">0</b> weeks
+                </span>
+                <span>
+                    💰 RM <b th:text="${p.monthlyFee}">0</b> / month
+                </span>
+            </div>
+
+            <a th:href="@{/member/enroll/{id}(id=${p.id})}"
+               class="btn btn-enroll">
+                Enroll Now
+            </a>
+
+        </div>
+
+    </div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    © 2025 HealthHub@UTM. All rights reserved.
+</footer>
+
+</body>
+</html>

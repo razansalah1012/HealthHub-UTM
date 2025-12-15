@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title th:text="${program.id == null ? 'Add Program' : 'Edit Program'}">Program Form</title>
+  <style>
+    label { display:block; margin-top:10px; }
+    input, textarea { width: 420px; padding: 8px; }
+    button { margin-top: 14px; padding: 8px 14px; }
+  </style>
+</head>
+<body>
+
+<h1 th:text="${program.id == null ? 'Add Program' : 'Edit Program'}">Program Form</h1>
+
+<form th:action="@{/program/save}" th:object="${program}" method="post">
+  <!-- keep id during edit -->
+  <input type="hidden" th:field="*{id}"/>
+
+  <label>Name</label>
+  <input type="text" th:field="*{name}" required maxlength="100"/>
+
+  <label>Description</label>
+  <textarea th:field="*{description}" rows="4" maxlength="500"></textarea>
+
+  <label>Duration Weeks</label>
+  <input type="number" th:field="*{durationWeeks}" min="1"/>
+
+  <label>Monthly Fee (RM)</label>
+  <input type="number" th:field="*{monthlyFee}" min="0" step="0.01"/>
+
+  <button type="submit">Save</button>
+  <a th:href="@{/program/list}">Cancel</a>
+</form>
+
+</body>
+</html>

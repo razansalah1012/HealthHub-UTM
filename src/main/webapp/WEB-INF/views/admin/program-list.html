@@ -1,0 +1,14 @@
+<h2>Programs</h2>
+<a href="/healthhubutm/admin/program/add">+ Add Program</a>
+<table border="1">
+<tr><th>ID</th><th>Name</th><th>Actions</th></tr>
+<tr th:each="p : ${programs}">
+  <td th:text="${p.id}"></td>
+  <td th:text="${p.name}"></td>
+  <td>
+    <a th:href="@{/admin/program/edit/{id}(id=${p.id})}">Edit</a>
+    <a th:href="@{/admin/program/delete/{id}(id=${p.id})}"
+       onclick="return confirm('Delete?')">Delete</a>
+  </td>
+</tr>
+</table>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="siteHeader">
+  <header class="header">
+    <div class="container bar">
+      <div class="brand">
+        <div class="title">HealthHub@UTM</div>
+        <div class="subtitle">Member Dashboard</div>
+      </div>
+
+      <nav class="nav">
+        <a class="btn btn-outline" th:href="@{/member/dashboard}">Dashboard</a>
+        <a class="btn btn-light" th:href="@{/auth/logout}">Logout</a>
+      </nav>
+    </div>
+  </header>
+</div>
+</body>
+</html>

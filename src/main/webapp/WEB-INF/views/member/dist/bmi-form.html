@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Enter BMI</title>
+  <link rel="stylesheet" th:href="@{/resources/css/app.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: siteHeader"></div>
+
+<div class="container">
+  <div class="card">
+    <h1 class="h1">Enter BMI</h1>
+    <p class="p">Fill in the details below to calculate and save your BMI.</p>
+
+    <div th:if="${error}" class="alert" th:text="${error}"></div>
+
+    <form class="form" th:action="@{/member/bmi/calculate}" method="post">
+      <div>
+        <div class="label">Height (meters)</div>
+        <input class="input" type="number" step="0.01" name="height" required placeholder="e.g. 1.70">
+      </div>
+
+      <div>
+        <div class="label">Weight (kg)</div>
+        <input class="input" type="number" step="0.1" name="weight" required placeholder="e.g. 65">
+      </div>
+
+      <div>
+        <div class="label">Year of Birth</div>
+        <input class="input" type="number" name="yob" required placeholder="e.g. 2005">
+      </div>
+
+      <button class="btn btn-light" type="submit">Calculate BMI</button>
+    </form>
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: siteFooter"></div>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>BMI History</title>
+  <link rel="stylesheet" th:href="@{/resources/css/app.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: siteHeader"></div>
+
+<div class="container">
+  <div class="card">
+    <h1 class="h1">BMI History</h1>
+    <p class="p">Here are your latest BMI records.</p>
+
+    <div style="margin-top:16px;">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Height</th>
+          <th>Weight</th>
+          <th>BMI</th>
+          <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${records}">
+          <td th:text="${r.createdAt}">2025-01-01</td>
+          <td th:text="${r.height}">1.70</td>
+          <td th:text="${r.weight}">65</td>
+          <td th:text="${#numbers.formatDecimal(r.bmi, 1, 2)}">22.49</td>
+          <td th:text="${r.age}">20</td>
+        </tr>
+
+        <tr th:if="${records == null || #lists.isEmpty(records)}">
+          <td colspan="5">No records yet. Go to “Enter BMI”.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: siteFooter"></div>
+</body>
+</html>
+

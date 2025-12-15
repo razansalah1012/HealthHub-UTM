@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>My Enrollments</title>
+  <link rel="stylesheet" th:href="@{/resources/css/app.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: siteHeader"></div>
+
+<div class="container">
+  <div class="card">
+    <h1 class="h1">My Enrollments</h1>
+    <p class="p">See enrolled program names and payment status.</p>
+
+    <div style="margin-top:16px;">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Program</th>
+          <th>Enrolled At</th>
+          <th>Payment</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="e : ${enrollments}">
+          <td th:text="${e.program.name}">Program Name</td>
+          <td th:text="${e.enrolledAt}">2025-01-01</td>
+
+          <td>
+            <span th:if="${e.paymentStatus == 'PAID'}" class="badge badge-paid">PAID</span>
+            <span th:if="${e.paymentStatus != 'PAID'}" class="badge badge-unpaid">UNPAID</span>
+          </td>
+
+          <td>
+            <form th:if="${e.paymentStatus != 'PAID'}"
+                  th:action="@{/member/enrollments/pay/{id}(id=${e.id})}"
+                  method="post" style="margin:0;">
+              <button class="btn btn-light" type="submit">Pay Now</button>
+            </form>
+            <span th:if="${e.paymentStatus == 'PAID'}">—</span>
+          </td>
+        </tr>
+
+        <tr th:if="${enrollments == null || #lists.isEmpty(enrollments)}">
+          <td colspan="4">No enrollments yet. Go to “Browse Programs”.</td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: siteFooter"></div>
+</body>
+</html>

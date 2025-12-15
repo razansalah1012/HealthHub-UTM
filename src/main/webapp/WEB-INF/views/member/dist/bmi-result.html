@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>BMI Result</title>
+  <link rel="stylesheet" th:href="@{/resources/css/app.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: siteHeader"></div>
+
+<div class="container">
+  <div class="card">
+    <h1 class="h1">BMI Result</h1>
+    <p class="p">Your BMI has been saved successfully.</p>
+
+    <div style="margin-top:16px">
+      <div class="label">Age</div>
+      <div class="input" th:text="${age}">0</div>
+    </div>
+
+    <div style="margin-top:12px">
+      <div class="label">BMI</div>
+      <div class="input" th:text="${#numbers.formatDecimal(bmi, 1, 2)}">0</div>
+    </div>
+
+    <div style="margin-top:12px">
+      <div class="label">Category</div>
+      <div class="input" th:text="${category}">Normal</div>
+    </div>
+
+    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+      <a class="btn btn-outline" th:href="@{/member/bmi/history}">View History</a>
+      <a class="btn btn-light" th:href="@{/member/dashboard}">Back to Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: siteFooter"></div>
+</body>
+</html>
